@@ -8,7 +8,7 @@ const chef = {
   location: "Vasundhara, Ghaziabad, India",
   tagline: "Crafting timeless experiences through passion, precision and purpose.",
   statement:
-    "Dynamic Executive Chef with 20+ years across luxury 5-star hospitality, known for multi-outlet leadership, pre-opening discipline, sustainable sourcing, modern plating and fine-dining execution."
+    "Dynamic and results-driven Executive Chef with 20+ years of experience across world-renowned luxury 5-star hotel brands including Marriott, Hyatt, Oberoi, Ritz-Carlton and Claridge. Proven expertise in spearheading multi-outlet kitchen operations, designing award-winning menus, leading high-performance culinary brigades, and driving exceptional guest satisfaction scores."
 };
 
 const navItems = [
@@ -23,7 +23,7 @@ const metrics = [
   { value: "20+", label: "Years culinary excellence" },
   { value: "11", label: "Luxury outlets led at Ritz-Carlton" },
   { value: "96%", label: "Guest satisfaction elevation" },
-  { value: "5", label: "Global hospitality regions" }
+  { value: "5", label: "Luxury hotel brands worldwide" }
 ];
 
 const dishes = [
@@ -56,46 +56,53 @@ const dishes = [
 
 const timeline = [
   {
-    years: "2022 - Present",
+    years: "2022 – Present",
     role: "Executive Chef",
     place: "Wellness & Luxury Property, India",
     detail:
-      "Leads two signature outlets including a Michelin-standard fine-dining restaurant; raised GSS from 88% to 96% with health-oriented detox, Ayurvedic, vegan and gluten-free menus."
+      "Spearheaded kitchen operations for 2 signature outlets, including a Michelin-standard fine-dining restaurant. Elevated GSS from 88% to 96% through consistency, innovation and rigorous quality standards. Designed health-oriented menus — detox, weight loss, Ayurvedic, vegan and gluten-free — in collaboration with nutritionists, dietitians and wellness consultants."
   },
   {
-    years: "2018 - 2021",
-    role: "Executive Sous Chef, Pre-Opening",
+    years: "Feb 2018 – Apr 2021",
+    role: "Executive Sous Chef (Pre-Opening Team)",
     place: "Hyatt Regency Aqaba, Jordan",
     detail:
-      "Delivered a 286-room luxury property with five F&B outlets and Ayla Golf Club, shaping SOPs, menus, training, market lists and HACCP standards."
+      "Delivered pre-opening for a 286-room luxury property with 5 F&B outlets and an 18-hole Ayla Golf Club. Assisted the Culinary Director in establishing culinary vision, SOPs, menus and training materials. Trained and supervised 19 local chefs and managers; led HACCP implementation and standardised recipes for outdoor banquet and catering operations."
   },
   {
-    years: "2017 - 2018",
-    role: "Chef de Cuisine, Pre-Opening",
-    place: "Alila Fort Bishangarh, Jaipur",
+    years: "Jan 2017 – Feb 2018",
+    role: "Chef de Cuisine (Pre-Opening Team)",
+    place: "Alila Fort Bishangarh, Jaipur, Rajasthan",
     detail:
-      "Opened a 350-year-old fort transformed into a 59-suite luxury destination with six F&B outlets, driving cost control, hiring, training and menu reviews."
+      "Part of the pre-opening team for a 350-year-old fort converted into a luxury property with 59 suites, tents, lawns and 6 F&B outlets. Managed all kitchen and F&B operational, quality and administrative functions. Recruited, trained and developed the Kitchen and Stewarding teams; controlled costs to improve gross profit margins."
   },
   {
-    years: "2012 - 2017",
+    years: "Apr 2012 – Dec 2017",
     role: "Sous Chef",
-    place: "The Ritz-Carlton, Jamaica",
+    place: "The Ritz-Carlton, Jamaica, West Indies",
     detail:
-      "Oversaw food quality, preparation and presentation across a 427-room property with 11 F&B outlets while mentoring teams and renewing menus."
+      "Oversaw kitchen operations across a 427-room property with 11 F&B outlets. Implemented hotel standards on food quality, preparation and presentation; introduced innovative dishes and modern presentation styles during menu renewal cycles. Designed training materials to maximise employee efficiency and maintain brand standards."
   },
   {
-    years: "2011 - 2013",
+    years: "Oct 2011 – Mar 2013",
     role: "Junior Sous Chef",
     place: "The Claridge's Hotel, New Delhi",
     detail:
-      "Worked across Pickwick and Seville, an award-winning Mediterranean fine-dining restaurant, as a certified F&B trainer."
+      "Worked across Pickwick (multi-cuisine) and Seville — a fine-dining Mediterranean restaurant voted one of the best Spanish restaurants at the Times Food Awards. Certified Trainer for all F&B-related activities across the hotel; supervised mise en place, guest orders, duty rosters and team training."
   },
   {
-    years: "2008 - 2011",
+    years: "Jan 2008 – Sep 2011",
     role: "Chef de Partie",
-    place: "The Oberoi Amar Vilas, Agra",
+    place: "The Oberoi Amar Vilas, Agra, Uttar Pradesh",
     detail:
-      "Served at Bellevue, recognized 3rd in Asia for service by Travel + Leisure World's Best Service Awards Reader Survey 2009."
+      "Worked at Bellevue multi-cuisine restaurant — ranked 3rd in Asia for service by Travel + Leisure World's Best Service Awards (Reader's Survey 2009). Supervised mise en place, maintained par stock levels and provided job-related training to junior colleagues."
+  },
+  {
+    years: "2003 – Dec 2007",
+    role: "Commis Chef",
+    place: "Baywatch Multi-Cuisine Restaurant, New Delhi",
+    detail:
+      "Specialised in Western Hot Kitchen; ensured quality standards, hygiene and timely preparation of guest orders. Maintained par stock levels and managed indenting for smooth kitchen operations."
   }
 ];
 

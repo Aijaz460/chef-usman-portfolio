@@ -399,14 +399,6 @@
     document.addEventListener("mouseout", (e) => { if (e.target.closest(sel)) ring.classList.remove("is-active"); });
   }
 
-  function wireMagnetic() {
-    if (isTouch || reduceMotion) return;
-    $$("[data-magnetic]").forEach((el) => {
-      el.addEventListener("mousemove", (e) => { const r = el.getBoundingClientRect(); el.style.transform = `translate(${(e.clientX - (r.left + r.width / 2)) * 0.25}px, ${(e.clientY - (r.top + r.height / 2)) * 0.3}px)`; });
-      el.addEventListener("mouseleave", () => (el.style.transform = ""));
-    });
-  }
-
   /* -------------------------------------------------------- SMOOTH SCROLL */
   let lenis = null;
   function wireSmoothScroll() {
@@ -465,7 +457,6 @@
     wireCounters();
     wireTimelineDraw();
     wireCursor();
-    wireMagnetic();
     runPreloader(() => { wireHero(); if (hasGSAP && window.ScrollTrigger) window.ScrollTrigger.refresh(); });
     window.addEventListener("load", () => { if (hasGSAP && window.ScrollTrigger) window.ScrollTrigger.refresh(); });
   }

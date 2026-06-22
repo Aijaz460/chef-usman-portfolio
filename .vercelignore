@@ -1,0 +1,20 @@
+# Deploy only the live static site — exclude tooling, source originals, and cruft
+node_modules
+dist
+.git
+.claude
+_old_react_backup
+chef_portfolio
+Dishesh
+public
+*.zip
+contact-sheet.html
+/App.jsx
+/main.jsx
+
+# Unused heavy originals (the site uses assets/opt/*.jpg + assets/chefusman.jpeg)
+assets/cheffood*.png
+assets/chefusmanworking.png
+/chefusman.jpeg
+/chefusman 2.jpeg
+/WhatsApp*.jpeg

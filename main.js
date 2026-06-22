@@ -344,6 +344,30 @@
     }
   }
 
+  /* ----------------------------------------------------- HERO PARALLAX */
+  function wireHeroParallax() {
+    const stage = $("#heroStage");
+    if (!stage || isTouch || reduceMotion) return;
+    const card = $("#pcard");
+    const layers = $$("[data-depth]", stage).filter((el) => !el.classList.contains("float") && el !== card);
+    let raf = null, tx = 0, ty = 0;
+    const apply = () => {
+      raf = null;
+      layers.forEach((el) => { const d = parseFloat(el.dataset.depth) || 1; el.style.transform = `translate(${-tx * d * 12}px, ${-ty * d * 12}px)`; });
+      if (card) card.style.transform = `rotateY(${tx * 9}deg) rotateX(${-ty * 9}deg)`;
+    };
+    stage.addEventListener("pointermove", (e) => {
+      const r = stage.getBoundingClientRect();
+      tx = (e.clientX - r.left) / r.width - 0.5;
+      ty = (e.clientY - r.top) / r.height - 0.5;
+      if (!raf) raf = requestAnimationFrame(apply);
+    });
+    stage.addEventListener("pointerleave", () => {
+      layers.forEach((el) => (el.style.transform = ""));
+      if (card) card.style.transform = "";
+    });
+  }
+
   /* --------------------------------------------------------- TIMELINE DRAW */
   function wireTimelineDraw() {
     const line = $(".timeline__line i");
@@ -463,6 +487,7 @@
     wireAnchors();
     wireCounters();
     wireTimelineDraw();
+    wireHeroParallax();
     wireCursor();
     runPreloader(() => { wireHero(); if (hasGSAP && window.ScrollTrigger) window.ScrollTrigger.refresh(); });
     window.addEventListener("load", () => { if (hasGSAP && window.ScrollTrigger) window.ScrollTrigger.refresh(); });

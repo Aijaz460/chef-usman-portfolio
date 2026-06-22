@@ -86,7 +86,12 @@
     { f: "01", cat: "viennoiserie", alt: "Artisan bakery buffet of breads, pretzels and rolls." },
     { f: "09", cat: "viennoiserie", alt: "Luxury hotel viennoiserie and pastry display with florals." },
     { f: "05", cat: "viennoiserie", alt: "Pair of rustic baguettes wrapped in paper and twine." },
-  ].map((g) => ({ src: `assets/thumb/cheffood${g.f}.jpg`, full: `assets/opt/cheffood${g.f}.jpg`, cat: g.cat, alt: g.alt }));
+  ].map((g) => ({ src: `assets/thumb/cheffood${g.f}.jpg`, full: `assets/opt/cheffood${g.f}.jpg`, cat: g.cat, alt: g.alt }))
+    .concat([
+      { f: "img1", cat: "plated", alt: "Cream dessert with shaved truffle in a porcelain flower bowl." },
+      { f: "img3", cat: "entremets", alt: "Ruby-glazed dome entremet with raspberries and gold leaf." },
+      { f: "img2", cat: "viennoiserie", alt: "Swirled artisan sourdough boule on a wood round." },
+    ].map((g) => ({ src: `assets/thumb/${g.f}.jpg`, full: `assets/opt/${g.f}.jpg`, cat: g.cat, alt: g.alt })));
 
   const catLabel = (id) => (FILTERS.find((f) => f.id === id) || {}).label || "";
 

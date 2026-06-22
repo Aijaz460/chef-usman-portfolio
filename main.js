@@ -86,7 +86,7 @@
     { f: "01", cat: "viennoiserie", alt: "Artisan bakery buffet of breads, pretzels and rolls." },
     { f: "09", cat: "viennoiserie", alt: "Luxury hotel viennoiserie and pastry display with florals." },
     { f: "05", cat: "viennoiserie", alt: "Pair of rustic baguettes wrapped in paper and twine." },
-  ].map((g) => ({ src: `assets/opt/cheffood${g.f}.jpg`, cat: g.cat, alt: g.alt }));
+  ].map((g) => ({ src: `assets/thumb/cheffood${g.f}.jpg`, full: `assets/opt/cheffood${g.f}.jpg`, cat: g.cat, alt: g.alt }));
 
   const catLabel = (id) => (FILTERS.find((f) => f.id === id) || {}).label || "";
 
@@ -175,7 +175,7 @@
     g.innerHTML = list.map((img, i) => `
       <button class="card reveal" data-index="${i}" aria-label="Open: ${img.alt}">
         <span class="card__media">
-          <img src="${img.src}" alt="${img.alt}" loading="${i < 3 ? "eager" : "lazy"}" decoding="async" draggable="false" />
+          <img src="${img.src}" alt="${img.alt}" loading="${i < 6 ? "eager" : "lazy"}" decoding="async" draggable="false" />
           <span class="card__view" aria-hidden="true">↗</span>
           <span class="card__overlay">
             <span class="card__cat">${catLabel(img.cat)}</span>
@@ -190,6 +190,8 @@
 
   function applyFilter(id) {
     activeList = id === "all" ? GALLERY : GALLERY.filter((i) => i.cat === id);
+    const track = $("#gallery");
+    if (track) track.classList.toggle("is-grid", id === "all"); // 2-row grid on All (desktop only, via CSS)
     renderGallery(activeList);
   }
 
@@ -254,7 +256,7 @@
     update() {
       const it = activeList[this.index];
       if (!it) return;
-      this.img.src = it.src; this.img.alt = it.alt;
+      this.img.src = it.full || it.src; this.img.alt = it.alt;
       this.cat.textContent = catLabel(it.cat);
       this.title.textContent = it.alt;
       this.detail.textContent = CAT_DETAIL[it.cat] || "";

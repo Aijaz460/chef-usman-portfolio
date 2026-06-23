@@ -2,3 +2,33 @@ node_modules
 dist
 .DS_Store
 *.local
+
+# vercel / editor
+.vercel/
+**/.DS_Store
+.claude/
+
+# Source originals & scratch (not part of the deployed site)
+chef_portfolio/
+chef_portfolio.zip
+Dishesh/
+_old_react_backup/
+public/
+
+# Unused heavy image originals (site uses assets/opt/*.jpg + assets/chefusman.jpeg)
+assets/cheffood*.png
+assets/chefusmanworking.png
+
+# Stray root images from the old build
+/chefusman.jpeg
+/chefusman 2.jpeg
+/WhatsApp*.jpeg
+.vercel
+
+# New gallery originals (site uses opt/ + thumb/)
+assets/img1.jpeg
+assets/img2.png
+assets/img3.jpeg
+assets/chefabout.png
+assets/exc-pstry-chef.png
+assets/PHILOSOPHY-img.jpeg

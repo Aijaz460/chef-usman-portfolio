@@ -15,9 +15,9 @@ const navItems = [
   { label: "Home", href: "#top" },
   { label: "Dishes", href: "#dishes" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
-  { label: "Media", href: "#media" },
-  { label: "Contact", href: "#contact" }
+  { label: "Skills", href: "#skills", light: true },
+  { label: "Media", href: "#media", light: true },
+  { label: "Contact", href: "#contact", light: true }
 ];
 
 const competencies = [
@@ -51,31 +51,19 @@ const metrics = [
 ];
 
 const dishes = [
-  {
-    title: "Wellness Garden",
-    concept: "Ayurvedic balance, vegan textures, citrus oil",
-    image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=85"
-  },
-  {
-    title: "Mediterranean Lineage",
-    concept: "Olive, grilled seafood, preserved lemon",
-    image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=85"
-  },
-  {
-    title: "Western Hot Kitchen",
-    concept: "Slow jus, root vegetables, classic technique",
-    image: "https://images.unsplash.com/photo-1559847844-5315695dadae?auto=format&fit=crop&w=900&q=85"
-  },
-  {
-    title: "Detox Composition",
-    concept: "Clean greens, seeds, compressed fruit",
-    image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85"
-  },
-  {
-    title: "Pastry Atelier",
-    concept: "Cocoa, fruit acidity, restrained sweetness",
-    image: "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85"
-  }
+  { title: "Wellness Garden",       concept: "Ayurvedic balance, vegan textures, citrus oil",        image: "/dishes/dish-1.jpeg" },
+  { title: "Mediterranean Lineage", concept: "Olive, grilled seafood, preserved lemon",               image: "/dishes/dish-2.jpeg" },
+  { title: "Western Hot Kitchen",   concept: "Slow jus, root vegetables, classic technique",          image: "/dishes/dish-3.jpeg" },
+  { title: "Detox Composition",     concept: "Clean greens, seeds, compressed fruit",                 image: "/dishes/dish-4.jpeg" },
+  { title: "Pastry Atelier",        concept: "Cocoa, fruit acidity, restrained sweetness",            image: "/dishes/dish-5.jpeg" },
+  { title: "Spice Route",           concept: "Aromatic masala, slow-cooked lamb, saffron jus",        image: "/dishes/dish-6.jpeg" },
+  { title: "Ocean Harvest",         concept: "Seared scallops, coastal herb butter, sea foam",        image: "/dishes/dish-7.jpeg" },
+  { title: "Heritage Grain",        concept: "Truffle risotto, aged parmesan, micro herbs",           image: "/dishes/dish-8.jpeg" },
+  { title: "Garden Bloom",          concept: "Seasonal vegetables, edible flowers, vinaigrette",      image: "/dishes/dish-9.jpeg" },
+  { title: "Ember & Smoke",         concept: "Wood-fired protein, charred vegetables, chimichurri",   image: "/dishes/dish-10.jpeg" },
+  { title: "Silk Road Platter",     concept: "Middle Eastern mezze, levant spices, flatbread",        image: "/dishes/dish-11.jpeg" },
+  { title: "Sunrise Ritual",        concept: "Artisan breads, preserved fruit, cultured butter",      image: "/dishes/dish-12.jpeg" },
+  { title: "Sweet Terroir",         concept: "Dark chocolate, seasonal fruit, caramel poetry",        image: "/dishes/dish-13.jpeg" }
 ];
 
 const timeline = [
@@ -175,19 +163,37 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("top");
   const currentYear = useMemo(() => new Date().getFullYear(), []);
   useInViewAnimation();
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setLoading(false), 1350);
-    return () => window.clearTimeout(timer);
+    const dismiss = () => window.setTimeout(() => setLoading(false), 280);
+    if (document.readyState === "complete") { dismiss(); return; }
+    window.addEventListener("load", dismiss, { once: true });
   }, []);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const ids = navItems.map((item) => item.href.slice(1));
+    const detectActive = () => {
+      const line = window.innerHeight * 0.32;
+      let current = ids[0];
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= line) current = id;
+      }
+      setActiveSection(current);
+    };
+    detectActive();
+    window.addEventListener("scroll", detectActive, { passive: true });
+    return () => window.removeEventListener("scroll", detectActive);
   }, []);
 
   function trackHeroMotion(event) {
@@ -208,11 +214,15 @@ function App() {
       <header className={`nav-bar ${scrolled ? "nav-scrolled" : ""}`} aria-label="Primary navigation">
         <a className="brand-mark" href="#top" aria-label="Mohd Usman Khan home">
           <span>MK</span>
-          <small>Executive Chef</small>
         </a>
         <nav aria-label="Desktop navigation">
           {navItems.map((item) => (
-            <a key={item.label} href={item.href}>
+            <a
+              key={item.label}
+              href={item.href}
+              {...(item.light ? { "data-light": "" } : {})}
+              {...(activeSection === item.href.slice(1) ? { "data-active": "" } : {})}
+            >
               {item.label}
             </a>
           ))}
@@ -225,16 +235,39 @@ function App() {
         >
           <span /><span /><span />
         </button>
-        {menuOpen && (
-          <nav className="mobile-nav" aria-label="Mobile navigation">
-            {navItems.map((item) => (
-              <a key={item.label} href={item.href} onClick={() => setMenuOpen(false)}>
-                {item.label}
-              </a>
-            ))}
-          </nav>
-        )}
       </header>
+
+      <div
+        className={`mobile-nav-overlay${menuOpen ? " active" : ""}`}
+        onClick={() => setMenuOpen(false)}
+        aria-hidden="true"
+      />
+      <nav className={`mobile-nav${menuOpen ? " mobile-nav-open" : ""}`} aria-label="Mobile navigation">
+        <div className="mobile-nav-head">
+          <span className="mobile-nav-brand">MK</span>
+          <button
+            className="mobile-nav-close"
+            onClick={() => setMenuOpen(false)}
+            aria-label="Close menu"
+          >
+            <span className="material-icons">close</span>
+          </button>
+        </div>
+        <div className="mobile-nav-links">
+          {navItems.map((item, i) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={() => setMenuOpen(false)}
+              style={{ "--i": i }}
+            >
+              <span className="mobile-nav-num">{String(i + 1).padStart(2, "0")}</span>
+              {item.label}
+            </a>
+          ))}
+        </div>
+        <p className="mobile-nav-foot">Executive Chef · 20+ Years</p>
+      </nav>
 
       <section className="hero" id="top" onMouseMove={trackHeroMotion}>
         <div className="hero-copy">
@@ -254,7 +287,7 @@ function App() {
         </div>
         <div className="hero-photo-panel">
           <div className="hero-photo">
-            <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1300&q=88" alt="Professional chef plating in a luxury kitchen" />
+            <img src="/chefusman.jpeg" alt="Executive Chef Mohd Usman Khan" loading="eager" fetchpriority="high" decoding="sync" />
           </div>
           <div className="hero-index"><span>01</span><i /><span>05</span></div>
         </div>
@@ -271,7 +304,7 @@ function App() {
         <div className="bento-gallery">
           {dishes.map((dish, index) => (
             <article className={`dish-card dish-${index + 1}`} key={dish.title}>
-              <img src={dish.image} alt={dish.title} />
+              <img src={dish.image} alt={dish.title} loading="lazy" decoding="async" />
               <span className="dish-num">{String(index + 1).padStart(2, "0")}</span>
               <div className="dish-caption">
                 <h3>{dish.title}</h3>

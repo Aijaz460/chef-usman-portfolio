@@ -137,8 +137,8 @@ section { padding-block: var(--section-y); position: relative; }
    ========================================================================= */
 .hero { --hero-top: clamp(5.5rem, 12vh, 8rem); min-height: 100svh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding-block: 0; }
 .hero__grid { display: grid; grid-template-columns: 1.04fr 0.96fr; min-height: 100svh; align-items: start; }
-.hero__content { padding: var(--hero-top) var(--pad-x) 5rem; max-width: calc(var(--container) / 2 + 4rem); margin-left: auto; }
-.hero__name { font-family: var(--serif); font-weight: 300; font-size: clamp(2.2rem, 4.7vw, 4.4rem); line-height: 1; letter-spacing: -0.03em; color: var(--ivory-pure); margin: 0.5rem 0 0; white-space: nowrap; }
+.hero__content { padding: var(--hero-top) var(--pad-x) 5rem; max-width: calc(var(--container) / 2 + 8rem); margin-left: auto; }
+.hero__name { font-family: var(--serif); font-weight: 300; font-size: clamp(1.9rem, 3.5vw, 3.4rem); line-height: 1.04; letter-spacing: -0.025em; color: var(--ivory-pure); margin: 0.5rem 0 0; white-space: nowrap; }
 .mask { display: block; overflow: hidden; }
 .mask__line { display: block; }
 .hero__role { font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold-bright); margin-bottom: 1.4rem; }
